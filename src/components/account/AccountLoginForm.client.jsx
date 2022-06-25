@@ -13,6 +13,7 @@ export function AccountLoginForm({shopName}) {
 
   function onSubmit(event) {
     event.preventDefault();
+    console.log("submitted")
 
     setEmailError(null);
     setHasSubmitError(false);
@@ -35,6 +36,7 @@ export function AccountLoginForm({shopName}) {
 
   async function checkPassword(event) {
     const validity = event.currentTarget.password.validity;
+    console.log(event.currentTarget.password.validity)
     if (validity.valid) {
       const response = await callLoginApi({
         email,
@@ -202,13 +204,13 @@ function PasswordField({password, setPassword, passwordError}) {
     <>
       <div className="mb-3">
         <input
-          className={`mb-1 appearance-none rounded border w-full py-2 px-3 text-primary/90 placeholder:text-primary/50 leading-tight focus:shadow-outline ${
+          className={`mb-1 rounded border w-full py-2 px-3 text-primary/90 placeholder:text-primary/50 leading-tight focus:shadow-outline ${
             passwordError ? ' border-red-500' : 'border-gray-900'
           }`}
           id="password"
           name="password"
-          type="password"
-          autoComplete="current-password"
+          type="email"
+          autoComplete="password"
           placeholder="Password"
           aria-label="Password"
           value={password}
